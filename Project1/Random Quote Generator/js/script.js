@@ -14,7 +14,7 @@ var oldQuoteNumber;
 function getRandomQuote(upperLimit){
   var quoteNumber = (Math.floor(Math.random() * upperLimit) + 1);
   quoteNumber -= 1;
-  while (quoteNumber === oldQuoteNumber) {
+  while (quoteNumber === oldQuoteNumber && numberOfQuotes > 1) {
     quoteNumber = (Math.floor(Math.random() * upperLimit) + 1);
     quoteNumber -= 1;
   }

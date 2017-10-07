@@ -117,6 +117,18 @@ body{
       background-color: #4ba6c3;
       color: #fff;
     }
+
+#pageButtons {
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+	
 button {
 	margin-right: 5px;
+    color: #4ba6c3;
+}
+
+button:hover{
+      background-color: #4ba6c3;
+      color: #fff;
 }

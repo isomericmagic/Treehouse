@@ -3,12 +3,24 @@ this program updates a web page with an original list of students
 displays 10 students per page and adds buttons to jump forward to 
 the next 10 students etc.
 */
+let parentElement = document.querySelector('.page');
+let studentListElement = document.querySelector('.student-list');
 let studentList = document.querySelectorAll('.student-list li');
 let studentListLength = document.querySelectorAll('.student-list li').length;
 let numberOfPages = (Math.round(studentListLength / 10)) + 1;
 let numberOfItemsOnLastPage = studentListLength - ((Math.round(studentListLength / 10)) * 10);
-//set the current page to 1
+//set the current page to 1 and put an id of students on the student-list ul to use later
 let currentPage = 1;
+studentListElement.id = 'students';
+
+//create page break and page buttons div, and assign pageButtons id to pageDiv
+let br = document.createElement('br');
+let pageDiv = document.createElement('div');
+parentElement.appendChild(br);
+parentElement.appendChild(pageDiv);
+pageDiv.id = 'pageButtons';
+
+//select page buttons div to use later
 const pageButtons = document.getElementById('pageButtons'); 
 
 //this function clears all the students from the page
@@ -25,7 +37,7 @@ function addStudent(student) {
 function addStudents() {
   let x = currentPage * 10;
   if (currentPage === numberOfPages) {
-    for (let i = numberOfItemsOnLastPage; i > 0; i -= 1) {
+    for (let i = (x - 10); i < (numberOfItemsOnLastPage + (x-10)); i += 1) {
 	  addStudent(i);
     }  
   } else {
@@ -48,7 +60,7 @@ students again
 */
 for (let y = 1; y <= numberOfPages; y += 1) {
   let newButton = document.createElement('button');
-  newButton.textContent = 'Page ' + y;
+  newButton.textContent = y;
   pageButtons.appendChild(newButton);
   let currentButton = document.getElementsByTagName('button')[(y - 1)];
   currentButton.addEventListener('click', () => {
